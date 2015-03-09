@@ -1,6 +1,9 @@
 package com.flywaychallenge.app;
 
+import java.util.List;
+
 import org.flywaydb.core.Flyway;
+import org.flywaydb.core.api.FlywayException;
 
 import com.flywaychallenge.models.Employee;
 
@@ -12,17 +15,27 @@ public class Driver {
 		//Create instance of flyway
 		FlywayHelper flywayHelper = new FlywayHelper();
 		Flyway flyway = flywayHelper.getFlyway();
-		//flyway.clean();
-		flyway.migrate();
-		DbUtil dbUtil = new DbUtil();
-
-		//Do Stuff
 		
+		//Migrate db using flyway object
+		try{
+			// TODO
+		}
+		catch(FlywayException e){
+			System.out.println("Unable to migrate: " + e.getMessage());
+		}
 		
 		//Get flyway migration status
 		System.out.println(flywayHelper.getInfo());
-		for (Employee e : dbUtil.getEmployeeDao().getAll()) {
-			System.out.println(e.getName() + " " + e.getJobTitle() + " ( started " + e.getStartDate().toString("MMMM-dd-YYYY") + " )");
+		
+		//Get Data
+		DbUtil dbUtil = new DbUtil();
+		List<Employee> listEmp = dbUtil.getEmployeeDao().getAll();
+		for (Employee e : listEmp) {
+			e.setDepartment(dbUtil.getDepartmentDao().getById(e.getDepartment().getId()));
+		}
+		for (Employee e : listEmp) {
+			System.out.println(e.getName() + " " + e.getJobTitle() + " ( started " + e.getStartDate().toString("MMMM-dd-YYYY") + " )"
+					+ " - Department: " + e.getDepartment().toString());
 		}
 		
 	}

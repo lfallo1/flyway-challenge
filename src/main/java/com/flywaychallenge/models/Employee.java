@@ -18,7 +18,7 @@ public class Employee {
 	@Column("job_title")
 	private String jobTitle;
 	@Column("department")
-	private String department;
+	private Department department;
 	@Column("start_date")
 	private LocalDate startDate;
 	@Column("active")
@@ -31,13 +31,13 @@ public class Employee {
 	public Employee(@PropertyName("id") Integer id,
 			@PropertyName("name") String name,
 			@PropertyName("jobTitle") String jobTitle,
-			@PropertyName("department") String department,
+			@PropertyName("department") Integer departmentId,
 			@PropertyName("startDate") Date startDate,
 			@PropertyName("active") Boolean active) {
 		this.id = id;
 		this.name = name;
 		this.jobTitle = jobTitle;
-		this.department = department;
+		this.department = new Department(departmentId);
 		this.startDate = new LocalDate(startDate);
 	}
 
@@ -65,11 +65,11 @@ public class Employee {
 		this.jobTitle = jobTitle;
 	}
 
-	public String getDepartment() {
+	public Department getDepartment() {
 		return department;
 	}
 
-	public void setDepartment(String department) {
+	public void setDepartment(Department department) {
 		this.department = department;
 	}
 

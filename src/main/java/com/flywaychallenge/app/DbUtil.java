@@ -4,17 +4,21 @@ import java.util.ResourceBundle;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 
+import com.flywaychallenge.dao.DepartmentDao;
 import com.flywaychallenge.dao.EmployeeDao;
 
 public class DbUtil {
 	private static final String APP_PROPERTIES_PATH = "app";
 	private EmployeeDao employeeDao;
+	private DepartmentDao departmentDao;
 	private DataSource dataSource;
 
 	public DbUtil(){
 		setupDatabaseConnection();
 		employeeDao = new EmployeeDao();
 		employeeDao.setJdbcTemplate(dataSource);
+		departmentDao = new DepartmentDao();
+		departmentDao.setJdbcTemplate(dataSource);
 	}
 	private void setupDatabaseConnection() {
 		ResourceBundle bundle = ResourceBundle.getBundle(APP_PROPERTIES_PATH);
@@ -31,5 +35,10 @@ public class DbUtil {
 	public void setEmployeeDao(EmployeeDao employeeDao) {
 		this.employeeDao = employeeDao;
 	}
-	
+	public DepartmentDao getDepartmentDao() {
+		return departmentDao;
+	}
+	public void setDepartmentDao(DepartmentDao departmentDao) {
+		this.departmentDao = departmentDao;
+	}
 }
