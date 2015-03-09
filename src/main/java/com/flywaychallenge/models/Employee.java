@@ -1,5 +1,7 @@
 package com.flywaychallenge.models;
 
+import java.sql.Date;
+
 import org.joda.time.LocalDate;
 
 import com.flywaychallenge.annotations.Column;
@@ -30,7 +32,7 @@ public class Employee {
 			@PropertyName("name") String name,
 			@PropertyName("jobTitle") String jobTitle,
 			@PropertyName("department") String department,
-			@PropertyName("startDate") String startDate,
+			@PropertyName("startDate") Date startDate,
 			@PropertyName("active") Boolean active) {
 		this.id = id;
 		this.name = name;
