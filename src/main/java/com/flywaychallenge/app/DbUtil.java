@@ -7,6 +7,12 @@ import org.apache.tomcat.jdbc.pool.DataSource;
 import com.flywaychallenge.dao.DepartmentDao;
 import com.flywaychallenge.dao.EmployeeDao;
 
+/**
+ * Class responsible for creating a connection to the db
+ * referenced in app.properties.
+ * @author lFallon
+ *
+ */
 public class DbUtil {
 	private static final String APP_PROPERTIES_PATH = "app";
 	private EmployeeDao employeeDao;

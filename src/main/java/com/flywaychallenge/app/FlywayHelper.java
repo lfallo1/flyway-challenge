@@ -6,6 +6,12 @@ import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.MigrationInfo;
 import org.flywaydb.core.api.MigrationInfoService;
 
+/**
+ * Helper class to create a new instance of flyway, with the specified
+ * configuration settings (settings located in app.properties)
+ * @author lFallon
+ *
+ */
 public class FlywayHelper {
 	private static final String APP_PROPERTIES_PATH = "app";
 	private Flyway flyway = null;

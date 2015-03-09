@@ -9,8 +9,6 @@ import org.springframework.jdbc.BadSqlGrammarException;
 
 import com.flywaychallenge.models.Employee;
 
-
-
 public class Driver {
 
 	private static final Logger logger = Logger.getLogger(Driver.class);
@@ -20,18 +18,21 @@ public class Driver {
 		FlywayHelper flywayHelper = new FlywayHelper();
 		Flyway flyway = flywayHelper.getFlyway();
 		
-		//Migrate db using flyway object
 		try{
-
+			/*
+			 * -----------------
+			 * PERFORM MIGRATION
+			 * -----------------
+			 */
 		}
 		catch(FlywayException e){
 			logger.error("Unable to migrate: " + e.getMessage());
 		}
 		
-		//Get flyway migration status
+		//Display Flyway migration status
 		System.out.println(flywayHelper.getInfo());
 		
-		//Get Data
+		//Display Results
 		DbUtil dbUtil = new DbUtil();
 		try{
 			List<Employee> listEmp = dbUtil.getEmployeeDao().getAll();
@@ -46,7 +47,5 @@ public class Driver {
 		catch(BadSqlGrammarException e){
 			logger.error("Unable to execute query");
 		}
-		
 	}
-
 }
