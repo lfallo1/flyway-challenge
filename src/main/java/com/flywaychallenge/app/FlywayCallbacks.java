@@ -21,12 +21,12 @@ public class FlywayCallbacks implements FlywayCallback {
 
 	@Override
 	public void beforeMigrate(Connection connection) {
-		
+		System.out.println("Migration starting...");
 	}
 
 	@Override
 	public void afterMigrate(Connection connection) {
-		
+		System.out.println("Migration complete...");
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class FlywayCallbacks implements FlywayCallback {
 
 	@Override
 	public void afterEachMigrate(Connection connection, MigrationInfo info) {
-		
+		System.out.println("Migration to version " + info.getVersion().getVersion() + " complete.");
 	}
 
 	@Override
